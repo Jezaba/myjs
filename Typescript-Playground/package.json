@@ -1,0 +1,19 @@
+{
+  "name": "typescript-playground",
+  "version": "1.0.0",
+  "description": "Beschr",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jezaba/myjs.git"
+  },
+  "author": "i",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jezaba/myjs/issues"
+  },
+  "homepage": "https://github.com/Jezaba/myjs#readme"
+}
