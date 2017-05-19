@@ -51,6 +51,6 @@ let someName=tuple[0];
 function getNameAndAge2():{name: string, age: number}{
     return {//ein Object can be returned  
         name:"Slava",
-        age:27;
+        age:27
     };
 }
