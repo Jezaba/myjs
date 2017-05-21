@@ -1,5 +1,5 @@
 *.DS_Store
 build/
 src/*.js
-*.tst
+#*.tst
 #.gitignore
