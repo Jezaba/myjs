@@ -39,5 +39,5 @@ class Dog extends Animal{
 let hund = new Dog();
 hund.eatFood("holz");
 hund.makeSound();
-hund.numberOfLegs = 3;
+//hund.numberOfLegs = 3;
 console.log(hund.numberOfLegs);
