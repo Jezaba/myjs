@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Beschr",
   "main": "index.js",
+  "typings":"index.d.ts",
   "scripts": {
     "build": "tsc"
   },
@@ -15,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/Jezaba/myjs/issues"
   },
-  "homepage": "https://github.com/Jezaba/myjs#readme"
+  "homepage": "https://github.com/Jezaba/myjs#readme",
+  "dependencies": {
+    "@types/lodash": "^4.14.64",
+    "lodash": "^4.17.4"
+  }
 }
