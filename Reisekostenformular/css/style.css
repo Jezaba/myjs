@@ -1,4 +1,8 @@
-/*horizontal navbar*/
+/*
+https://www.npmjs.com/package/@types/jquery.datatables
+
+
+horizontal navbar*/
 #nav1{
 margin-top:1em;
 margin-bottom:0.5em;
@@ -84,7 +88,7 @@ body {
   display: table-row;
   background: #f6f6f6;
 }
-.row:nth-of-type(odd) {
+.row:nth-of-type(odd) { /*da is ne Pseudoklasse, wie zB:  p:before { content:...} */
   background: #e9e9e9;
 }
 .row.header {
