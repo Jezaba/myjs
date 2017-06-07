@@ -4,7 +4,7 @@ import {changeDogName as changeDogNameB, logDogName as logDogNameB} from './dogM
 logDogNameA();
 logDogNameB();
 changeDogNameA("Zeus");
-changeDogNameB("Buddy");
+changeDogNameB("Buddys");
 
 logDogNameA();
 logDogNameB();

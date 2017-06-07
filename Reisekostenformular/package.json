@@ -2,9 +2,8 @@
   "name": "reisekostenformular",
   "version": "1.0.0",
   "description": "ifs",
-  "main": "reisekostenformular.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: koan test specified\" && exit 1",
     "build": "tsc"
   },
   "repository": {
