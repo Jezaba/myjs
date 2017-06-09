@@ -1,5 +1,5 @@
 // Platzieren Sie Ihre Einstellungen in dieser Datei, um Standard- und Benutzereinstellungen zu überschreiben.
 {
     "editor.fontSize":11,
-    "window.zoomLevel": 2
+    "window.zoomLevel": 1
 }
