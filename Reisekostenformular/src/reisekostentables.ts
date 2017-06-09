@@ -1,79 +1,122 @@
-export namespace Reisekosten.Tables{
+//export namespace Reisekosten.Tables{
+//type NumberCallbak = (zahl:number)=>void;
+module Tables{
+    class Cell{
+        constructor(value:string=""){
+            this._value = value;
+        }
+        private _className:string="cell";
+        private _value: string;
 
-class Cell{
-     constructor(className:string="cell", value:string="", isEditable:boolean=false, column?:Column){
-        this._className = className;
-        this._value = value;
-        this._isEditable=isEditable;
-        //this._column = new column("aaa","bbb");
-        if(column===null){
-            this._column=column;
+        public get Value():string{
+            return this._value;
+        }
+        public set Value(value: string){
+            this._value=value;
+        }
+        public get ClassName():string{
+            return this._className;
+        }
+        public set ClassName(value: string){
+            this._className=value;
         }
     }
-    private _column:Column;
-    private _className:string;
-    private _value: string;
-    private _isEditable:boolean = false;
 
-    public get Value():string{
-		return this._value;
+     class Row{
+        Cells:Array<Cell>;//=[];
+        private _className:string="row";
+        constructor(...cells:Cell[]) {
+            if(this.Cells==null){
+                this.Cells = [];
+            }
+            if(cells!=null){
+                this.Cells.push(...cells);
+            }
+        }
+        public get ClassName():string{
+            return this._className;
+        }
+        public set ClassName(value: string){
+            this._className=value;
+        }
+        Row2Html(linebreak:string="\n", intend:string=" "):string{
+            let ret;
+            ret = intend + "<div"+ ((this.ClassName!="")? " class=\"" + this.ClassName + "\"" :"")+ ">"+linebreak;
+            for (let c of this.Cells) {
+                ret += intend + intend + `<div` + ((c.ClassName!="")? ` class="` + c.ClassName + `"` :``)+ `>`
+                + c.Value 
+                + `</div>`+linebreak;
+            }
+            ret=ret+ intend + "</div>"
+            return ret;
+        }
     }
-    public set Value(value: string){
-		 this._value=value;
+    
+    class Table{
+        Id:string;
+        private _className:string="table";
+        RowHeaders:Row;
+        Rows:Array<Row>=[];
+        constructor(id:string="") {
+            this.Id=id;
+        }
+        public get ClassName():string{
+            return this._className;
+        }
+        public set ClassName(value: string){
+            this._className=value;
+        }
+        Table2Html(linebreak:string="\n",intend:string=" "):string{
+            let ret:string;
+                ret = "<div" + ((this.Id!="")?" Id=\""+ this.Id + "\"" : "") +
+                ((this.ClassName!="")? " class=\"" + this.ClassName  + "\"" :"") + 
+                 ">"+linebreak; 
+
+            ret += this.RowHeaders.Row2Html(linebreak, intend)+linebreak;
+
+            for(let r of this.Rows){
+                ret += r.Row2Html(linebreak, intend) ;
+            }
+            ret = ret + linebreak + "</div>" ;
+            return ret;
+        }
     }
-    public get Column():Column{
-        return this._column;
+
+
+
+
+    TabelleUndDatensaetzeErstellen();
+
+    function TabelleUndDatensaetzeErstellen():void{
+        // TABLE ERSTELLEN
+        let TABLE1 = new Table("tbl1");
+
+        //HEADER ROW ERSTELLEN
+        let cellH1 = new Cell("Datum");
+        let cellH2 = new Cell("Kfz");
+        let cellH3 = new Cell("ifs-MA<br />od. Klient");
+        let cellH4 = new Cell("Satz");
+        let cellH5 = new Cell("Beschreibung");
+        let cellH6 = new Cell("KM");
+        let cellH7 = new Cell("Kosten");
+        let rowHeaders = new Row(cellH1,cellH2,cellH3,cellH4,cellH5,cellH6,cellH7);
+        rowHeaders.ClassName = "row header";
+        TABLE1.RowHeaders = rowHeaders;
+
+        //NORMALE ROWS ERSTELLEN
+        let cell1 = new Cell("08.04.1964");
+        let cell2 = new Cell("Motorrad");
+        let cell3 = new Cell("Aloisia");
+        let cell4 = new Cell("1.42");
+        let cell5 = new Cell("Fldk. Termin monatlicher Jourfix ");
+        let cell6 = new Cell("31.3");
+        let cell7 = new Cell("44.446");
+        let row = new Row(cell1,cell2,cell3,cell4,cell5,cell6,cell7);
+        TABLE1.Rows.push(row);
+
+        
+        console.log("\n\n\n",TABLE1.Table2Html("\n","    "));
+        //console.log("\n\n\n",TABLE1.Table2Html("",""));
     }
-    public set Column(column: Column){
-		 this._column=column;
-    }
-}
-class Column{
-     constructor(public headerName:string="", public dataType:string="") {
-    }
-}
-
-class Row{
-    Cells:[string];
-    Cells2:[Cell];// = new Set();
-    Cells3:Cell[]=[];
-}
-
-type NumberCallbak = (zahl:number)=>void;
-let col:Column = new Column("headernam111","datatype");
-
-
-let z = new Cell("cell","ein Text",false);
-z.Column = col;
-
-
-let R = new Row();
-//x.Column.headerName="AAAA";
-R.Cells3[0]= z;
-
-col = new Column("2222","YYYYY");
-z.Column = col;
-R.Cells3[1]= z;
-
-let y = new Cell("cell2","ein Text333333",false);
-col = new Column("33333","YYYYY");
-y.Column = col;
-
-R.Cells3[2]=y;
-
-console.log(R.Cells3[0].Column.headerName);
-console.log(R.Cells3[1].Column.headerName);
-console.log(R.Cells3[2].Column.headerName);
-
-
-
-/*R.Cells.push("aaa");
-R.Cells[1]="bbb";
-*/// R.Cells[0]= x;
-// R.Cells[1]= new Cell("cell","ein Value",false,new Column("gggg","hhhh"));
-// R.Cells[2]= new Cell("cell","ein Value",false,R.Cells[0].Column);
-
-// console.log ("DOSAMA ------------>",x.Column.headerName);
-//console.log(R.Cells[2].Column.headerName);
-
+//MODULE FERTIG
 }
